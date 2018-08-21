@@ -1,0 +1,44 @@
+@charset "utf-8";
+
+// Set your brand colors
+$beige: #fffff0;
+$lighter-beige: #f0f0e1;
+$lightest-gray: #b5b5aa;
+$lighter-gray: #9e9e95;
+$light-gray: #8a8a81;
+$gray: #75756e;
+$dark-gray: #3b3b37;
+$darker-gray: #2b2b29;
+$red: #f55050;
+$light-red: #d46a84;
+$orange: #e06a26;
+$pale-orange: #b56f45;
+$yellow: #d4ac35;
+$green: #219e21;
+$blue-green: #1b9e9e;
+$blue: #468dd4;
+$pale-blue: #557b9e;
+$purple: #a26fbf;
+
+$col: #bf5858;
+$col: #508a50;
+$col: #ab8e38;
+$col: #8b6a9e;
+$col: #458a8a;
+$col: #b5b5aa;
+$col: #8a8a81;
+$col: #3b3b37;
+$col: #75756e;
+$col: #9e9e95;
+$col: #020202;
+$col: #ab6a7a;
+$col: #fffff0;
+
+// Update Bulma's global variables
+
+// Bulma
+@import '../../node_modules/bulma/sass/base/minireset';
+@import '../../node_modules/bulma/sass/utilities/_all';
+@import './global';
+@import './layout';
+@import './components/_all';
