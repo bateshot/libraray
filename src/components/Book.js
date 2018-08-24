@@ -13,7 +13,7 @@ const Book = ( {book, deleteBook, editBook} ) => {
         <tr>
             <td>{book.title}</td>
             <td>{book.author}</td>
-            <td>{book.desctiption}</td>
+            <td>{book.description.substr(0, 80)} ...</td>
             <td>{moment(book.date).format('DD/MMM/YYYY')}</td>
             <td>
                 <button>details</button>
