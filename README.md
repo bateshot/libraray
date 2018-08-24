@@ -4,8 +4,8 @@ A simple book library interface on react
 #TODO
 * ~Book class~
 * ~API with CRUD~
-* Book row
-* Book list
+* ~Book row~
+* ~Book list~
 * Filter books
 * Sort books
 * Error/Success feed

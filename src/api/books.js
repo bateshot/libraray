@@ -1,4 +1,5 @@
-import Book from "../model/Book";
+import Book from '../model/Book'
+import presetBooks from './presetBooks'
 
 function _saveToLocalStorage (books) {
     localStorage.setItem('books', JSON.stringify(books))
@@ -10,7 +11,24 @@ function _getFromLocalStorage () {
     return JSON.parse(books).map(book => new Book(book))
 }
 
+function _fillInitialBooks () {
+    const shouldSkip = localStorage.getItem('shouldSkip')
+
+    if (shouldSkip) return
+
+    localStorage.setItem('shouldSkip', 'yes')
+
+    const books = [
+        new Book(presetBooks[0]),
+        new Book(presetBooks[1]),
+    ]
+
+    _saveToLocalStorage(books)
+}
+
 export function getBooks(){
+    if (!_getFromLocalStorage().length) _fillInitialBooks()
+
     return Promise.resolve(_getFromLocalStorage())
 }
 
