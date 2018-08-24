@@ -37,8 +37,6 @@ $col: #fffff0;
 // Update Bulma's global variables
 
 // Bulma
-@import '../../node_modules/bulma/sass/base/minireset';
-@import '../../node_modules/bulma/sass/utilities/_all';
-@import './global';
+@import '../../node_modules/bulma/bulma.sass';
 @import './layout';
 @import './components/_all';
