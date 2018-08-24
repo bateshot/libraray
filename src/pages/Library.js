@@ -2,6 +2,12 @@ import React from 'react'
 import Book from '../components/Book'
 import { getBooks } from '../api/books'
 
+const SORT = {
+    AUTHOR: 'author',
+    TITLE: 'title',
+    DATE: 'date',
+}
+
 export default class Library extends React.Component {
     constructor (props) {
         super(props)
@@ -12,7 +18,9 @@ export default class Library extends React.Component {
             filterBy: {
                 author: true,
                 title: true,
-            }
+            },
+            sortBy: SORT.TITLE,
+            isAscending: true
         }
     }
 
@@ -65,16 +73,17 @@ export default class Library extends React.Component {
     renderBooks () {
         const books = this.state.books
             .filter(this.shouldFilter.bind(this))
+            .sort(this.sorter.bind(this))
 
         return (
             <table className="table is-striped is-fullwidth is-hoverable">
                 <thead>
                     <tr>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Description</th>
-                        <th>Date Added</th>
-                        <th>Controls</th>
+                        {this.renderSortBy('title')}
+                        {this.renderSortBy('author')}
+                        <th>DESCRIPTION</th>
+                        {this.renderSortBy('date')}
+                        <th>CONTROLS</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -86,6 +95,32 @@ export default class Library extends React.Component {
                 </tbody>
             </table>
         )
+    }
+
+    renderSortBy (key) {
+        const { isAscending, sortBy } = this.state
+        const arrow = isAscending ? <span>&#9660;</span> : <span>&#9650;</span>
+
+        return (
+            <th style={{minWidth: '150px'}} onClick={this.onSortChange.bind(this, key)}>
+                {key.toUpperCase()} { key === sortBy ? arrow : null }
+            </th>
+        )
+    }
+
+    onSortChange (key) {
+        const { isAscending, sortBy } = this.state
+
+        if (sortBy !== key) {
+            this.setState({
+                sortBy: key,
+                isAscending: false,
+            })
+        } else {
+            this.setState({
+                isAscending: !isAscending
+            })
+        }
     }
 
     onFilterChange (e) {
@@ -115,6 +150,17 @@ export default class Library extends React.Component {
         }
 
         return false
+    }
+
+    sorter (a, b) {
+        const { sortBy, isAscending } = this.state
+        const inverter = isAscending ? 1 : -1
+
+        if (a[sortBy] > b[sortBy]) return (1 * inverter)
+
+        if (a[sortBy] < b[sortBy]) return (-1 * inverter)
+
+        return 0
     }
 
 }

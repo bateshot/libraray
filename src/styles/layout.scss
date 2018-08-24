@@ -43,13 +43,12 @@
   /* Medium Devices, Desktops */
   @media only screen and (min-width : 992px) {
     #layout-container {
-      grid-template-areas: "heading heading"
-      "nav nav"
-      "main about"
-      "main aside"
-      "footer footer";
+      grid-template-areas: "heading"
+      "nav"
+      "main"
+      "main"
+      "footer";
       grid-template-rows: 50px;
-      grid-template-columns: 66%;
     }
   }
 

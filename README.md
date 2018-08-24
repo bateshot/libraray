@@ -6,8 +6,8 @@ A simple book library interface on react
 * ~API with CRUD~
 * ~Book row~
 * ~Book list~
-* Filter books
-* Sort books
+* ~Filter books~
+* ~Sort books~
 * Error/Success feed
 * Delete book + confirmation
 * Create book + validation (modal)
