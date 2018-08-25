@@ -8,7 +8,7 @@ A simple book library interface on react
 * ~Book list~
 * ~Filter books~
 * ~Sort books~
-* Error/Success feed
+* ~Error/Success feed~
 * Delete book + confirmation
 * Create book + validation (modal)
 * Autofill on create (bonus)
