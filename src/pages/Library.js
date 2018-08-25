@@ -2,7 +2,7 @@ import React from 'react'
 import { toast } from 'react-toastify';
 
 import Book from '../components/Book'
-import { getBooks } from '../api/books'
+import * as api from '../api/books'
 
 const SORT = {
     AUTHOR: 'author',
@@ -27,7 +27,7 @@ export default class Library extends React.Component {
     }
 
     componentDidMount () {
-        getBooks().then(books => {
+        api.getBooks().then(books => {
             this.setState({ books })
         })
     }
@@ -92,11 +92,24 @@ export default class Library extends React.Component {
                     {books.map(book => (<Book
                         key={book.isbn}
                         book={book}
-                        deleteBook={()=>{}}
+                        deleteBook={this.deleteBook.bind(this)}
                         editBook = {()=>{}} />))}
                 </tbody>
             </table>
         )
+    }
+
+    deleteBook (isbn) {
+        api.deleteBook(isbn)
+            .then(()=>{
+                const books = this.state.books.filter(b => b.isbn !== isbn)
+
+                this.setState({ books })
+                toast.success('OK')
+            })
+            .catch(error => {
+                toast.error(error)
+            })
     }
 
     renderSortBy (key) {

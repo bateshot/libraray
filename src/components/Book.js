@@ -5,7 +5,7 @@ const Book = ( {book, deleteBook, editBook} ) => {
     const shouldDelete = () => {
         const agree = confirm(`Do you wish to delete "${book.title}"`)
         if (agree) {
-            deleteBook.bind(null, book.isbn)
+            deleteBook(book.isbn)
         }
     }
 
