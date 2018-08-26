@@ -99,7 +99,7 @@ export default class Library extends React.Component {
                         {this.renderSortBy('author')}
                         <th>DESCRIPTION</th>
                         {this.renderSortBy('date')}
-                        <th>CONTROLS</th>
+                        <th style={{minWidth: '140px'}}>CONTROLS</th>
                     </tr>
                 </thead>
                 <tbody>

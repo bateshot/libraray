@@ -12,5 +12,5 @@ A simple book library interface on react
 * ~Delete book + confirmation~
 * ~Create book + validation (modal)~
 * ~Update book + validation (modal)~
-* Book details (decide where)
-* Styling
+* ~Book details (decide where)~
+* ~Styling~

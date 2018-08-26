@@ -1,8 +1,8 @@
 import React from 'react'
 
 const Heading = () => (
-    <div className="heading dark" style={{textAlign: 'center'}}>
-        <h1>Library</h1>
+    <div className="heading">
+        <h1 className="title">Da Library</h1>
     </div>
 )
 

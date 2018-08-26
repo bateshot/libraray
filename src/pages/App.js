@@ -1,10 +1,13 @@
 import React from 'react'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faHome } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faEye, faTrash, faEdit } from '@fortawesome/free-solid-svg-icons'
 import { ToastContainer } from 'react-toastify'
 
 import 'react-toastify/dist/ReactToastify.css';
 library.add(faHome)
+library.add(faTrash)
+library.add(faEdit)
+library.add(faEye)
 
 import Footer from '../components/Footer'
 import Navigation from '../components/Navigation'
