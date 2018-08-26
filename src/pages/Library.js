@@ -1,8 +1,10 @@
 import React from 'react'
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'
 
 import Book from '../components/Book'
+import Modal from '../components/Modal'
 import * as api from '../api/books'
+import EditBook from '../components/EditBook'
 
 const SORT = {
     AUTHOR: 'author',
@@ -22,7 +24,9 @@ export default class Library extends React.Component {
                 title: true,
             },
             sortBy: SORT.TITLE,
-            isAscending: true
+            isAscending: true,
+            editing: null,
+            addBook: false
         }
     }
 
@@ -33,11 +37,17 @@ export default class Library extends React.Component {
     }
 
     render () {
+        const { editing, addBook } = this.state
         return (
             <div className="main">
                 <h1>Filters go here</h1>
                 { this.renderFilter() }
                 { this.renderBooks() }
+                <Modal
+                    onClose={this.closeEditModal.bind(this)}
+                    isActive={editing || addBook}>
+                    { editing ? <EditBook isbn={editing}></EditBook> : null}
+                </Modal>
             </div>
         )
     }
@@ -93,7 +103,7 @@ export default class Library extends React.Component {
                         key={book.isbn}
                         book={book}
                         deleteBook={this.deleteBook.bind(this)}
-                        editBook = {()=>{}} />))}
+                        editBook = {this.editBook.bind(this)} />))}
                 </tbody>
             </table>
         )
@@ -110,6 +120,18 @@ export default class Library extends React.Component {
             .catch(error => {
                 toast.error(error)
             })
+    }
+
+    closeEditModal(){
+        this.setState({editing: null, addBook: false})
+    }
+
+    editBook(isbn){
+        this.setState({editing: isbn})
+    }
+
+    createBook(){
+        this.setState({addBook: true})
     }
 
     renderSortBy (key) {
