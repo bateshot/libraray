@@ -8,16 +8,17 @@ const Book = ( {book, deleteBook, editBook} ) => {
             deleteBook(book.isbn)
         }
     }
+    const { isbn, title, author, description, date } = book
 
     return (
         <tr>
-            <td>{book.title}</td>
-            <td>{book.author}</td>
-            <td>{book.description.substr(0, 80)} ...</td>
-            <td>{moment(book.date).format('DD/MMM/YYYY')}</td>
+            <td>{title}</td>
+            <td>{author}</td>
+            <td>{description.substr(0, 80)} ...</td>
+            <td>{moment(date).format('DD/MMM/YYYY')}</td>
             <td>
                 <button>details</button>
-                <button onClick={editBook.bind(null, book.isbn)}>edit</button>
+                <button onClick={() => { editBook(isbn) }}>edit</button>
                 <button onClick={shouldDelete}>delete</button>
             </td>
         </tr>
