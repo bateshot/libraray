@@ -40,13 +40,12 @@ export default class Library extends React.Component {
         const { editing, addBook } = this.state
         return (
             <div className="main">
-                <h1>Filters go here</h1>
                 { this.renderFilter() }
                 { this.renderBooks() }
                 <Modal
                     onClose={this.closeEditModal.bind(this)}
                     isActive={editing || addBook}>
-                    { editing ? <EditBook onSave={this.onBookSave.bind(this)} isbn={editing}></EditBook> : null}
+                    { editing || addBook ? <EditBook onSave={this.onBookSave.bind(this)} isbn={editing}></EditBook> : null}
                 </Modal>
             </div>
         )
@@ -90,6 +89,11 @@ export default class Library extends React.Component {
         return (
             <table className="table is-striped is-fullwidth is-hoverable">
                 <thead>
+                    <tr>
+                        <th colSpan={5}>
+                            <button onClick={this.createBook.bind(this)} className="button is-primary is-rounded is-fullwidth">add new book</button>
+                        </th>
+                    </tr>
                     <tr>
                         {this.renderSortBy('title')}
                         {this.renderSortBy('author')}

@@ -44,8 +44,8 @@ export default class EditBook extends React.Component {
                 <div className="field">
                     <label className="label">ISBN</label>
                     <div className="control">
-                        <input disabled={!!isbn} onChange={(e) => { this.onChange('isbn', e.target.value) }}
-                        value={isbn} className="input" type="text" placeholder="title" />
+                        <input disabled={!!this.props.isbn} onChange={(e) => { this.onChange('isbn', e.target.value) }}
+                        value={isbn} className="input" type="text" placeholder="ISBN" />
                     </div>
                 </div>
                 <div className="field">
@@ -97,8 +97,6 @@ export default class EditBook extends React.Component {
         const apiHandler = this.props.isbn ? updateBook : createBook
         const { book } = this.state
         const isValid = book.isValid()
-
-        console.log(isValid)
 
         if (!isValid) {
             toast.error('Empty field or invalid isbn format supplied')
