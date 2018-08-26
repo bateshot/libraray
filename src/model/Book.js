@@ -1,5 +1,4 @@
 import { isEmpty } from 'lodash'
-import isbnIsValid from 'isbn-validator'
 
 export default class Book {
     constructor (book) {
@@ -8,7 +7,7 @@ export default class Book {
         this.title = book.title || undefined
         this.author = book.author || undefined
         this.description = book.description || undefined
-        this.date = book.date || undefined // timestamp
+        this.date = book.date || new Date().valueOf() // timestamp
     }
 
     isValid () {
@@ -19,8 +18,8 @@ export default class Book {
             if (typeof this[key] !== 'string' || isEmpty(this[key])) return false
         }
 
-        // valid isbn
-        if (!isbnIsValid(this.isbn)) return false
+        // valid isbn TODO use library
+        if (!this.isbn.match(/(ISBN[-]*(1[03])*[ ]*(: ){0,1})*(([0-9Xx][- ]*){13}|([0-9Xx][- ]*){10})/)) return false
 
         // non empty timestamp
         if (!this.date) return false
