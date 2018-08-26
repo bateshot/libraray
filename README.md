@@ -2,7 +2,7 @@
 A simple book library interface on react
 
 #Install
- * `git clone <url>`
+ * `git clone https://github.com/bateshot/libraray.git`
  * `npm install`
  * `npm start`
 
