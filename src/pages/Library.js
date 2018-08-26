@@ -46,7 +46,7 @@ export default class Library extends React.Component {
                 <Modal
                     onClose={this.closeEditModal.bind(this)}
                     isActive={editing || addBook}>
-                    { editing ? <EditBook isbn={editing}></EditBook> : null}
+                    { editing ? <EditBook onSave={this.onBookSave.bind(this)} isbn={editing}></EditBook> : null}
                 </Modal>
             </div>
         )
@@ -118,7 +118,7 @@ export default class Library extends React.Component {
                 toast.success('OK')
             })
             .catch(error => {
-                toast.error(error)
+                toast.error(error.message)
             })
     }
 
@@ -132,6 +132,26 @@ export default class Library extends React.Component {
 
     createBook(){
         this.setState({addBook: true})
+    }
+
+    onBookSave(book) {
+        let inserted = false
+        const books = this.state.books.map(b => {
+            if (b.isbn === book.isbn) {
+                inserted = true
+                return book
+            }
+            else {
+                return b
+            }
+        })
+
+        if (!inserted) { //new book
+            books.push(book)
+        }
+
+        this.setState({ books })
+        this.closeEditModal()
     }
 
     renderSortBy (key) {

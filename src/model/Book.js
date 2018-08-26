@@ -1,5 +1,5 @@
 import { isEmpty } from 'lodash'
-import { Validate } from 'isbn-validate'
+import isbnIsValid from 'isbn-validator'
 
 export default class Book {
     constructor (book) {
@@ -15,12 +15,12 @@ export default class Book {
         const nonEmptyStrings = ['author', 'title', 'description']
 
         // non empty string fields
-        for (key in nonEmptyStrings) {
-            if (typeof this[key] !== 'string' || isEmpty(this[key])) return false    
+        for (const key of nonEmptyStrings) {
+            if (typeof this[key] !== 'string' || isEmpty(this[key])) return false
         }
 
         // valid isbn
-        if (!Validate(this.isbn)) return false
+        if (!isbnIsValid(this.isbn)) return false
 
         // non empty timestamp
         if (!this.date) return false
