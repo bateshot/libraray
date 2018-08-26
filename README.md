@@ -1,6 +1,11 @@
 # libraray
 A simple book library interface on react
 
+#Install
+ * `git clone <url>`
+ * `npm install`
+ * `npm start`
+
 #TODO
 * ~Book class~
 * ~API with CRUD~
