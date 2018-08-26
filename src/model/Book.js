@@ -3,6 +3,7 @@ import { Validate } from 'isbn-validate'
 
 export default class Book {
     constructor (book) {
+        book = book || {}
         this.isbn = book.isbn || undefined
         this.title = book.title || undefined
         this.author = book.author || undefined
