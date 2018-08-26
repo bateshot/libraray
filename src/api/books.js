@@ -32,15 +32,23 @@ export function getBooks(){
     return Promise.resolve(_getFromLocalStorage())
 }
 
+export function getBook(isbn){
+    const books = _getFromLocalStorage()
+    const index = books.findIndex(b => b.isbn === isbn)
+
+    if (books[index]) return Promise.resolve(books[index])
+    else return Promise.reject(new Error('book not found'))
+}
+
 export function createBook(book) {
     const books = _getFromLocalStorage()
 
     if (!book.isValid()) {
-        return Promise.reject('Invalid book format')
+        return Promise.reject(new Error('Invalid book format'))
     }
 
     if (books.findIndex(b => b.isbn === book.isbn) !== -1) {
-        return Promise.reject('Book with the same isbn already exists')
+        return Promise.reject(new Error('Book with the same isbn already exists'))
     }
 
     books.push(book)
@@ -55,11 +63,11 @@ export function updateBook (book) {
     const index = books.findIndex(b => b.isbn === book.isbn)
 
     if (index < 0) {
-        return Promise.reject('Book not found')
+        return Promise.reject(new Error('Book not found'))
     }
 
     if (!book.isValid()) {
-        return Promise.reject('Invalid book format')
+        return Promise.reject(new Error('Invalid book format'))
     }
 
     books[index] = book
