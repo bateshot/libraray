@@ -1,12 +1,12 @@
 # libraray
 A simple book library interface on react
 
-#Install
+# Install
  * `git clone https://github.com/bateshot/libraray.git`
  * `npm install`
  * `npm start`
 
-#TODO
+# TODO
 * ~Book class~
 * ~API with CRUD~
 * ~Book row~
